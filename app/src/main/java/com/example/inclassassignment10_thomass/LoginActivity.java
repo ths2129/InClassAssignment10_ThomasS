@@ -45,12 +45,12 @@ public class LoginActivity extends AppCompatActivity {
         userEmail = (EditText) findViewById(R.id.email_view);
         userPassword = (EditText) findViewById(R.id.pass_view);
 
-      authStateListener = new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user == null){
+                if (user == null) {
                     startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                 } else {
                     userRef = database.getReference(user.getUid());
@@ -80,10 +80,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     });
-                }}};}
+                }
+            }
+        };
+    }
 
 
-    private void SignUpEmail (String email, String password) {
+    private void SignUpEmail(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -99,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void sendEmailVerification() {
         // Disable button
 
@@ -114,7 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void LogOut(View view){
+
+    public void LogOut(View view) {
         Toast.makeText(this, "Bye", Toast.LENGTH_SHORT).show();
         mAuth.signOut();
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -123,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void SignUp(View view) {
-        SignUpEmail(userEmail.getText().toString(),userPassword.getText().toString());// converted to string
+        SignUpEmail(userEmail.getText().toString(), userPassword.getText().toString());// converted to string
 
         String email = userEmail.getText().toString();
         Intent intent = new Intent();

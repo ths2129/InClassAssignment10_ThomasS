@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/email_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email/Username"/>
+        android:hint="Email/Username" />
 
     <EditText
         android:id="@+id/password_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"/>
+        android:hint="Password" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,31 +28,33 @@
             android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:onClick="LoginButton"/>
+            android:onClick="LoginButton"
+            android:text="Login" />
 
         <Button
             android:id="@+id/sign_up_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up"
-            android:onClick="SignButton"/>
+            android:onClick="SignButton"
+            android:text="Sign up" />
 
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Out"
-            android:onClick="LogOut"/>
+            android:onClick="LogOut"
+            android:text="Sign Out" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/previous_email"
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"/>
+            android:text="Email" />
     </LinearLayout>
 
 </LinearLayout>
