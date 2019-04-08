@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "222274237240",
+    "firebase_url": "https://inclassassignment10thomass.firebaseio.com",
+    "project_id": "inclassassignment10thomass",
+    "storage_bucket": "inclassassignment10thomass.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222274237240:android:47f73a0739908c48",
+        "android_client_info": {
+          "package_name": "com.example.inclassassignment10_thomass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222274237240-tluqqn2dm03b09pn8p5gsbpo1g80pclu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.inclassassignment10_thomass",
+            "certificate_hash": "35cc6b60f8626e139d51f52690e4a440722eda8a"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNd838xi-0TrS7-wRI0DB-6zERg0eq_30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222274237240-1af2tidb6r9ig4f0kbb8obe9eu781meo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
