@@ -1,2 +1,2 @@
 # InClassAssignment10_ThomasS
-Facebook and semail authentication to firebase
+Facebook and email authentication to firebase
