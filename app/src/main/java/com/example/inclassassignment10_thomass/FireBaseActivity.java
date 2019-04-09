@@ -14,15 +14,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class FireBaseActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private TextView displayText;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance(); //linked to the Firebase
-    private DatabaseReference holidayRef = database.getReference("Trip One"); //Location
+    private DatabaseReference holidayRef = database.getReference("Trip One"); //Location - cloud
     private DatabaseReference anotherHolidayRef = database.getReference("Other Trips"); // This is the location
-    //private ArrayList<Business> people = new ArrayList<>();
+    private ArrayList<Holiday> people = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class FireBaseActivity extends AppCompatActivity {
     }
 
     public void setTrip(View view) { //push this Onclick
-        holidayRef.setValue(new Holiday("NewfoundLand", 15000, false, true));//new object Business
+        holidayRef.setValue(new Holiday("NewfoundLand", 15000, false, true));//object from Trip constructor
         Toast.makeText(this, "Added to FireBase", Toast.LENGTH_SHORT).show();
     }
 

@@ -12,6 +12,7 @@ import android.icu.text.IDNA;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -66,19 +67,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        printKeyHash();
+        printKeyHash(); //retrieved tag for facebook
 
         emailText = (EditText) findViewById(R.id.email_text);
         passwordText = (EditText) findViewById(R.id.password_text);
+        passwordText.setTransformationMethod(new PasswordTransformationMethod()); //Slack this hides password
+
         //previousEmail = (TextView) findViewById(R.id.previous_email);
-        previousEmail();
+        previousEmail(); //a method
 
 
         mAuth = FirebaseAuth.getInstance();
-        cbm = CallbackManager.Factory.create();
-        loginButton = findViewById(R.id.login_facebook);
-        loginButton.setReadPermissions("email");
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        cbm = CallbackManager.Factory.create(); //facebook
+        loginButton = findViewById(R.id.login_facebook); // facebook
+        loginButton.setReadPermissions("email"); //facebook must be email or it won't work
+        loginButton.setOnClickListener(new View.OnClickListener() { //facebook
             @Override
             public void onClick(View view) {
                 signInFB();
@@ -89,12 +92,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         handleFacebookAccessToken(loginResult.getAccessToken());
-
                     }
 
                     @Override
                     public void onCancel() {
-
                     }
 
                     @Override
@@ -104,17 +105,18 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
 
-            private void handleFacebookAccessToken(AccessToken accessToken) {
+            private void handleFacebookAccessToken(AccessToken accessToken) { //method utsed for facebook
                 AuthCredential creds = FacebookAuthProvider.getCredential(accessToken.getToken());
                 mAuth.signInWithCredential(creds).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "message", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Doesn't work", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        String email = authResult.getUser().getEmail();
+                        String fb = authResult.getUser().getEmail();
+                        Toast.makeText(MainActivity.this, "Connected", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, FireBaseActivity.class);
                         startActivity(intent);
 
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+/*
         mAuthListner = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -134,15 +136,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+    }*/
     }
 
-    private void printKeyHash() {
+    private void printKeyHash() { //utilized for getting the facebook ID and secret code
         try {
             PackageInfo info = getPackageManager().getPackageInfo("com.example.inclassassignment10_thomass", PackageManager.GET_SIGNATURES);
             for (Signature sign : info.signatures) {
                 MessageDigest messageDigest = MessageDigest.getInstance("SHA");
                 messageDigest.update(sign.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT));
 
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -153,35 +155,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void previousEmail() {
+    public void previousEmail() { //method
         Intent intent = getIntent();
         String str = intent.getStringExtra(EMAIL);
-//        previousEmail.setText(str);
+        //previousEmail.setText(str);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show(); //starting toast
         // Check if user is signed in (non-null) and update UI accordingly.
         //mAuth.addAuthStateListener(mAuthListner);
         //updateUI(currentUser); //FIREBASE code that doesn't work
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy() { //toast when destroyed
         super.onDestroy();
         Toast.makeText(this, "See you later", Toast.LENGTH_SHORT).show();
     }
 
-    public void SignButton(View view) {
+    public void SignButton(View view) { //onclick method
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
 
     }
 
 
-    public void LoginIntoFireBase(String email, String password) {
+    public void LoginIntoFireBase(String email, String password) { // parameter arguements and conditional for email
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)

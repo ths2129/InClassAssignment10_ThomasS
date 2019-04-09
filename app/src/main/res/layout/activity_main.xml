@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    style="@style/home">
 
     <EditText
         android:id="@+id/email_text"
@@ -48,13 +49,17 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_gravity="center|bottom">
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_facebook"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email" />
+            android:layout_height="match_parent"
+            android:text="Email"
+            android:layout_gravity="bottom"
+            android:textSize="24dp"
+            />
     </LinearLayout>
 
 </LinearLayout>
